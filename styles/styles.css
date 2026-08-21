@@ -1,0 +1,175 @@
+:root {
+    --gradient-l: linear-gradient(to bottom, rgba(255, 255, 255, 1) 10%, rgba(120, 168, 204, 1) 96%);
+    --gradient-d: linear-gradient(to bottom, rgba(31, 82, 120, 1) 0%, rgba(154, 208, 253, 1) 100%);
+    --font-primary: "Cal Sans", sans-serif;
+    --font-secondary: "Roboto", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and Edge */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+
+    margin: 0;
+    padding: 0 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+
+    padding: 20px 50px 50px 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: thistle;
+    border-radius: 0.5rem;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 3.2rem;
+}
+
+.content h2 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+#name-error {
+    margin: 10px 0 5px 0;
+    color: thistle;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+
+#name-check-field {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    max-width: 190px;
+    padding: 0.875rem;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    outline: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+input:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0 black;
+}
+
+button {
+    max-width: 190px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+
+    transform-origin: center;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0 black;
+}
+
+
+/* ========================================================= */
+
+
+.page {
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+/* Current page shrinks slightly and fades out */
+@keyframes scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+}
+
+/* Next page starts smaller with a bounce curve and pops up to full size */
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scale-out {
+    animation-name: scaleOut;
+    animation-timing-function: ease-in-out;
+}
+
+.animate-scale-in {
+    animation-name: scaleIn;
+    /* Matches your bouncy spring curve for a smooth snap */
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
