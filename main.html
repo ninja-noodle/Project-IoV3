@@ -18,8 +18,8 @@
 <body>
     <section id="name-field-block">
         <h1>Welcome</h1>
-        <section class="content">
-            <span id="name-error" class="no-select">Incorrect name, try again!</span>
+        <section class="content" id="name-field-block-content">
+            <span id="name-error" class="no-select secondary-font">Incorrect name, try again!</span>
             <div id="name-check-field">
                 <input type="search" name="name" class="input" placeholder="Enter your name" />
                 <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -32,13 +32,41 @@
         </section>
     </section>
 
+    <div id="loader1" class="loader hidden"></div>
+
     <section id="dob-field-block" class="hidden">
         <h1>Verify</h1>
-
+        <section id="pin-field-block-content" class="content">
+            <span class="no-select secondary-font">Enter your Date of Birth</span>
+            <span id="dob-pin-error" class="no-select secondary-font hidden">It's incorrect! Try again</span>
+            <div id="pin-field">
+                <input type="text" name="pin1" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+                <input type="text" name="pin2" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+                <input type="text" name="pin3" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+                <input type="text" name="pin4" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+                <input type="text" name="pin5" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+                <input type="text" name="pin6" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+                <input type="text" name="pin7" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+            </div>
+            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg>
+            </button>
+        </section>
     </section>
 
-    <script src="scripts/name-field.js"></script>
+    <div id="loader2" class="loader hidden"></div>
+
+    <section id="success-block" class="hidden">
+        <h1>Verify</h1>
+    </section>
     <script src="scripts/transition.js"></script>
+
+    <script src="scripts/name-field.js"></script>
+    <script src="scripts/auto-pin-field.js"></script>
+    <script src="scripts/pin-field-checker.js"></script>
 </body>
 
 </html>
