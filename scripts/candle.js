@@ -1,6 +1,6 @@
 let currentCandles = 1;
 let isAdding = false; // Prevent double-clicks / rapid tap spam
-const TARGET_AGE = 5;
+const TARGET_AGE = 25;
 const addCandleBtn = document.querySelector('#add-candle-btn');
 const candleContainer = document.querySelector('#candle-container');
 const candleCountSpan = document.querySelector('#candle-count');

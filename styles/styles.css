@@ -970,7 +970,7 @@ button:active {
 }
 
 #view-gifts-btn {
-    margin: 40px 0 0 0;
+    margin: 0px 0 40px 0;
 }
 
 #wish-message {
@@ -1038,7 +1038,7 @@ button:active {
     scroll-snap-align: center;
     flex: 0 0 280px;
     /* Fixed width for vertical proportion */
-    height: 480px;
+    height: 560px;
     /* Tall vertical height */
     background: #ffffff;
     border: 3px solid rgb(174, 138, 174);
@@ -1100,4 +1100,69 @@ button:active {
     color: #4a3b5c;
     text-align: justify;
     hyphens: auto;
+}
+
+.card-text-box ul {
+    margin: 0;
+    padding-left: 15px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #4a3b5c;
+    text-align: justify;
+    hyphens: auto;
+}
+
+#bouquet {
+    display: block;
+    margin: 20px auto;
+    /* Centers horizontally and adds vertical spacing */
+    max-width: 175px;
+    /* Adjust size as needed */
+    height: auto;
+}
+
+.view-gifts-btn {
+    display: block;
+    margin: 20px auto 0;
+    /* Centers the button and adds top spacing */
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+/* Interactive cursor and tap feedback for the bouquet */
+#bouquet {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+#bouquet:active {
+    transform: scale(0.92) rotate(-4deg);
+}
+
+/* Floating heart confetti particles */
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 1.5rem;
+    user-select: none;
+    animation: explodeAndFloat 1.2s ease-out forwards;
+}
+
+@keyframes explodeAndFloat {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.4) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--tr));
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--tx) * 1.1), calc(var(--ty) - 60px)) scale(0.8) rotate(calc(var(--tr) + 30deg));
+    }
 }
