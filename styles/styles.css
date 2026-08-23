@@ -213,6 +213,27 @@ button:active {
     font-style: italic;
 }
 
+#age-counter-block-content {
+    background-color: #000;
+    opacity: 50%;
+    color: #fff;
+}
+
+#age-counter-block-content button {
+    background-color: #fff;
+    box-shadow: 0px 6px 0 rgb(157, 122, 157);
+    border: 0;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#age-counter-block-content button:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0 thistle;
+}
+
+
 /* ========================================================= */
 
 
@@ -292,4 +313,174 @@ button:active {
     100% {
         background-position: 100% 0, 50% 50%, 0 100%
     }
+}
+
+
+/* ========================================= */
+
+
+#candle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    max-width: 420px;
+    min-height: 80px;
+    margin: 1.5rem auto;
+}
+
+/* Pop-in animation for each added candle */
+.candle-wrapper {
+    display: inline-flex;
+    animation: candlePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Looping flame flicker */
+.flame {
+    transform-origin: 32px 23px;
+    /* Pivot from the base of the wick */
+    animation: flameFlicker 0.12s infinite alternate ease-in-out;
+}
+
+@keyframes flameFlicker {
+    0% {
+        transform: scale(0.95) rotate(-2deg);
+        filter: drop-shadow(0 0 3px rgba(255, 179, 71, 0.6));
+    }
+
+    100% {
+        transform: scale(1.08) rotate(2deg);
+        filter: drop-shadow(0 0 8px rgba(255, 179, 71, 0.9));
+    }
+}
+
+@keyframes candlePop {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+/* ============= */
+
+.recaptcha-card {
+    width: 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(108, 122, 174, 0.25);
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    /* Clips header corners to match card radius */
+}
+
+.recaptcha-header {
+    background: #6C86E2;
+    /* Soft periwinkle matching top background gradient */
+    color: #ffffff;
+    padding: 16px;
+}
+
+.header-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.header-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2px 0 0 0;
+    text-transform: lowercase;
+}
+
+.recaptcha-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background: #ffffff;
+    /* Clean white grid separators */
+    padding: 4px;
+}
+
+.grid-item {
+    position: relative;
+    aspect-ratio: 1;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+/* Selection state indicator */
+.grid-item.selected img {
+    transform: scale(0.86);
+}
+
+.grid-item.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 22px;
+    height: 22px;
+    background: #6C86E2;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.recaptcha-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #ffffff;
+}
+
+.recaptcha-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.verify-btn {
+    background: #6C86E2;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(108, 134, 226, 0.35);
+}
+
+.verify-btn:hover {
+    background: #5872D1;
+    transform: translateY(-1px);
+}
+
+.verify-btn:active {
+    transform: translateY(0);
 }

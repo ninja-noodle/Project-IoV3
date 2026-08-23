@@ -30,7 +30,7 @@ async function navigateSections(
     nextSection,
     showLoader = true,
     messagesSelector = null,
-    messageDelay = 1200
+    messageDelay = 1800
 ) {
     const currentEl = typeof currentSection === 'string' ? document.querySelector(currentSection) : currentSection;
     const nextEl = typeof nextSection === 'string' ? document.querySelector(nextSection) : nextSection;

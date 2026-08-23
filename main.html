@@ -76,16 +76,69 @@
     </section>
 
     <section id="age-counter-block" class="hidden">
-        <span class="no-select secondary-font">Today is</span>
-        <h1>Your Special Day</h1>
+        <h1>Candles</h1>
+        <section id="age-counter-block-content" class="content">
+            <!-- Candle Blueprint Template -->
+            <template id="candle-template">
+                <div class="candle-wrapper">
+                    <svg class="candle-svg" viewBox="0 0 64 64" width="36" height="36">
+                        <!-- Candle Wax Body -->
+                        <rect x="22" y="24" width="20" height="36" rx="3" fill="#FFB7B2" />
+                        <rect x="22" y="32" width="20" height="4" fill="#FFDAC1" />
+                        <rect x="22" y="44" width="20" height="4" fill="#FFDAC1" />
+
+                        <!-- Wick -->
+                        <line x1="32" y1="24" x2="32" y2="18" stroke="#555" stroke-width="2" stroke-linecap="round" />
+
+                        <!-- Outer Flame -->
+                        <path class="flame"
+                            d="M32 4 C32 4, 25 12, 25 16 C25 19.86 28.14 23 32 23 C35.86 23 39 19.86 39 16 C39 12, 32 4, 32 4 Z"
+                            fill="#FFB347" />
+
+                        <!-- Inner Flame Glow -->
+                        <path class="flame-inner"
+                            d="M32 10 C32 10, 28 14, 28 17 C28 19.2 29.8 21 32 21 C34.2 21 36 19.2 36 17 C36 14, 32 10, 32 10 Z"
+                            fill="#FFF566" />
+                    </svg>
+                </div>
+            </template>
+            <div id="candle-container"></div>
+            <p class="candle-count-text no-select secondary-font">
+                Candles lit: <span id="candle-count">1</span>
+            </p>
+            <button id="add-candle-btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                    fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+            </button>
+        </section>
     </section>
 
+    <section id="image-selection-block" class="hidden">
+        <div class="recaptcha-card">
+            <div class="recaptcha-header">
+                <span class="header-subtitle">Select all squares with</span>
+                <h2 class="header-title">The Birthday Girl</h2>
+            </div>
+
+            <!-- 3x3 Grid container populated by JS -->
+            <div id="recaptcha-grid" class="recaptcha-grid"></div>
+
+            <div class="recaptcha-footer">
+                <span id="recaptcha-error" class="recaptcha-error hidden">Incorrect! Try again.</span>
+                <button id="verify-captcha-btn" type="button" class="verify-btn">Verify</button>
+            </div>
+        </div>
+    </section>
 
     <script src="scripts/transition.js"></script>
 
     <script src="scripts/name-field.js"></script>
     <script src="scripts/auto-pin-field.js"></script>
     <script src="scripts/pin-field-checker.js"></script>
+    <script src="scripts/candle.js"></script>
+    <script src="scripts/recaptcha.js"></script>
 </body>
 
 </html>
