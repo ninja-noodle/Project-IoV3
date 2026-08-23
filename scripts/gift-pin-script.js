@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const dobBlock = document.getElementById('view-gifts');
+    const giftsBlock = document.getElementById('view-gifts');
     const pinContainer = document.getElementById('gift-pin-field');
     const inputs = pinContainer.querySelectorAll('.gift-pin');
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper to focus the first input safely
     const focusFirstInput = () => {
-        if (inputs.length > 0 && !dobBlock.classList.contains('hidden')) {
+        if (inputs.length > 0 && !giftsBlock.classList.contains('hidden')) {
             // Small timeout ensures the DOM has updated visibility before focusing
             setTimeout(() => triggerActiveAnimation(inputs[0]), 50);
         }
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Focus immediately if already visible on load
     focusFirstInput();
 
-    // 2. Watch for class changes (un-hiding) on #view-gifts
+    // 2. Watch for class changes (un-hiding) on #dob-field-block
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.attributeName === 'class') {
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    observer.observe(dobBlock, { attributes: true });
+    observer.observe(giftsBlock, { attributes: true });
 
     // 3. Auto-advance when typing
     pinContainer.addEventListener('input', (e) => {
         const target = e.target;
-        if (!target.classList.contains('gift-pin')) return;
+        if (!target.classList.contains('pin')) return;
 
         target.value = target.value.replace(/\D/g, '');
         const index = Array.from(inputs).indexOf(target);
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Handle Backspace navigation
     pinContainer.addEventListener('keydown', (e) => {
         const target = e.target;
-        if (!target.classList.contains('gift-pin')) return;
+        if (!target.classList.contains('pin')) return;
 
         const index = Array.from(inputs).indexOf(target);
 

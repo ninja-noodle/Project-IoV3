@@ -41,6 +41,12 @@
             <span class="status-msg hidden">Doing calculations...</span>
             <span class="status-msg hidden">Just a few more seconds...</span>
         </div>
+
+        <div id="loading-messages-2" class="hidden">
+            <span class="status-msg hidden">Confirming birthday girl...</span>
+            <span class="status-msg hidden">Just a few more seconds...</span>
+            <span class="status-msg hidden">Confirmed!</span>
+        </div>
     </div>
 
     <section id="dob-field-block" class="hidden">
@@ -70,7 +76,7 @@
         <h1>Welcome</h1>
         <section id="success-block-content" class="content">
             <span class="no-select secondary-font success-font">Yay!!! You are the right person :D</span>
-            <button>Let's gooo
+            <button>Let's go!!!
             </button>
         </section>
     </section>
@@ -132,6 +138,170 @@
         </div>
     </section>
 
+    <section id="cake" class="hidden">
+        <!-- Confetti Canvas overlay -->
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- Container for dynamically spawned balloons -->
+        <div id="balloon-container"></div>
+
+        <!-- Cake Card Container (Illustration Only) -->
+        <div class="cake-card">
+            <div class="cake-wrapper">
+                <!-- 1. Candle & Flame -->
+                <div class="main-candle">
+                    <div class="wick"></div>
+                    <div class="flame" id="main-flame"></div>
+                </div>
+
+                <!-- 2. Cake Tiers -->
+                <div class="layer top-tier">
+                    <div class="frosting"></div>
+                </div>
+                <div class="layer bottom-tier">
+                    <div class="sprinkle s1"></div>
+                    <div class="sprinkle s2"></div>
+                    <div class="sprinkle s3"></div>
+                    <div class="sprinkle s4"></div>
+                    <div class="sprinkle s5"></div>
+                    <div class="sprinkle s6"></div>
+                    <div class="sprinkle s7"></div>
+                    <div class="sprinkle s8"></div>
+                </div>
+
+                <!-- 3. Plate -->
+                <div class="plate"></div>
+
+                <!-- 4. Greenery & Leaves -->
+                <div class="leaf leaf-far-left"></div>
+                <div class="leaf leaf-mid-left"></div>
+                <div class="leaf leaf-mid-right"></div>
+                <div class="leaf leaf-far-right"></div>
+
+                <!-- 5. Base Flowers -->
+                <div class="flower-base flower-left"></div>
+                <div class="flower-base flower-center-left"></div>
+                <div class="flower-base flower-center-right"></div>
+                <div class="flower-base flower-right"></div>
+            </div>
+        </div>
+
+        <!-- Actions (Outside .cake-card) -->
+        <div class="action-container">
+            <button class="wish-btn" id="wish-btn">
+                <div class="btn-progress" id="btn-progress"></div>
+                <span class="btn-text" id="btn-text">Hold to Blow & Wish</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="message-section" class="message-section hidden">
+        <h1>Happy Birthday, my love💘</h1>
+        <div class="wish-message" id="wish-message">
+            Happy Great Birthday, my dearest love
+        </div>
+
+        <button id="view-gifts-btn" class="view-gifts-btn">View gifts</button>
+    </section>
+
+    <section id="view-gifts" class="hidden">
+        <h1>Verify</h1>
+        <section id="gift-pin-field-block-content" class="content">
+            <span class="no-select secondary-font">Enter the pin included in the gift</span>
+            <span id="gift-pin-error" class="no-select secondary-font hidden">It's incorrect! Try again</span>
+            <div id="gift-pin-field">
+                <input type="text" name="pin1" class="input gift-pin" maxlength="1" inputmode="numeric"
+                    placeholder="-" />
+                <input type="text" name="pin2" class="input gift-pin" maxlength="1" inputmode="numeric"
+                    placeholder="-" />
+                <input type="text" name="pin3" class="input gift-pin" maxlength="1" inputmode="numeric"
+                    placeholder="-" />
+                <input type="text" name="pin4" class="input gift-pin" maxlength="1" inputmode="numeric"
+                    placeholder="-" />
+                <input type="text" name="pin5" class="input gift-pin" maxlength="1" inputmode="numeric"
+                    placeholder="-" />
+                <input type="text" name="pin6" class="input gift-pin" maxlength="1" inputmode="numeric"
+                    placeholder="-" />
+            </div>
+            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg>
+            </button>
+        </section>
+    </section>
+
+    <section id="view-gifts-content" class="hidden">
+        <h2 class="gifts-title">Birthday Surprises<br>for you</h2>
+        <span class="no-select secondary-font">Hope you like all the gifts</span>
+        <!-- Horizontal Scroll Container -->
+        <div class="gifts-carousel">
+
+            <!-- Card 1 -->
+            <div class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/cn-11134207-820l4-mr9ydgwcc9oib8@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 class="card-heading">Special Gift #1</h3>
+                <div class="card-text-box">
+                    <p>Write your detailed note, memory, or surprise description here. This box fits nicely inside the
+                        card layout!</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/my-11134258-820ld-mrr3grn1tfcw50"
+                        alt="Special Gift">
+                </div>
+                <h3 class="card-heading">Special Gift #2</h3>
+                <div class="card-text-box">
+                    <p>Another sweet message or clue about the second gift goes right here.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/sg-11134207-7rdya-lzitjaiiccc46f@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 class="card-heading">Special Gift #3</h3>
+                <div class="card-text-box">
+                    <p>Add as many vertical cards as you like; they will smoothly scroll horizontally!</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/sg-11134207-7rdya-lzitjaiiccc46f@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 class="card-heading">Special Gift #4</h3>
+                <div class="card-text-box">
+                    <p>Add as many vertical cards as you like; they will smoothly scroll horizontally!</p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/my-11134207-820lg-mi2n24nhyvbaa4@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 class="card-heading">Special Gift #5</h3>
+                <div class="card-text-box">
+                    <p>Add as many vertical cards as you like; they will smoothly scroll horizontally!</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <script src="scripts/transition.js"></script>
 
     <script src="scripts/name-field.js"></script>
@@ -139,6 +309,10 @@
     <script src="scripts/pin-field-checker.js"></script>
     <script src="scripts/candle.js"></script>
     <script src="scripts/recaptcha.js"></script>
+    <script src="scripts/cake.js"></script>
+    <script src="scripts/wish-message-section.js"></script>
+    <script src="scripts/gift-pin-script.js"></script>
+    <script src="scripts/gift-pin-field-checker.js"></script>
 </body>
 
 </html>

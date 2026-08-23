@@ -100,7 +100,10 @@ document.querySelector('#verify-captcha-btn').addEventListener('click', (e) => {
         if (errorElement) errorElement.classList.add('hidden');
 
         // Transition to the next page
-        navigateSections('#image-selection-block', '#final-block');
+        navigateSections('#image-selection-block', '#cake', true, '#loading-messages-2');
+        document.body.classList.remove('has-gradient');
+        document.body.style.padding = '0';
+        document.documentElement.style.padding = '0';
     } else {
         // Show error message
         if (errorElement) errorElement.classList.remove('hidden');
