@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const enteredHash = await hashString(enteredPin);
 
         if (enteredHash === CORRECT_PIN_HASH) {
-            navigateSections('#dob-field-block', '#success-block', '#loader1');
+            navigateSections('#dob-field-block', '#success-block');
         } else {
             document.getElementById('dob-pin-error').classList.remove('hidden');
             resetInputs();

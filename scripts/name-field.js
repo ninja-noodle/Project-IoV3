@@ -22,7 +22,7 @@ async function checkNameMatch() {
     const userHash = await hashName(userEnteredName);
 
     if (ALLOWED_HASHES.includes(userHash)) {
-        navigateSections('#name-field-block', '#dob-field-block', '#loader1');
+        navigateSections('#name-field-block', '#dob-field-block');
     } else {
         document.querySelector('#name-error').style.color = 'red';
     }

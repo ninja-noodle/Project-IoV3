@@ -32,7 +32,8 @@ html {
 
 html,
 body {
-    height: 100%;
+    position: relative;
+    min-height: 100vh;
 
     margin: 0;
     padding: 0 8px;
@@ -40,6 +41,24 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    /* Controls smoothness & duration */
+    z-index: -1;
+    /* Ensures it stays behind your text/cards */
+    pointer-events: none;
+}
+
+body.has-gradient::before {
+    opacity: 1;
 }
 
 .content {
@@ -158,6 +177,41 @@ button:active {
     box-shadow: 0px 0px 0 black;
 }
 
+.success-font {
+    font-size: 1.1rem;
+}
+
+#success-block-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#age-counter-block h1 {
+    font-size: 3rem;
+}
+
+#age-counter-block span {
+    font-size: 1.3rem;
+}
+
+#loading-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.status-msg {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    font-style: italic;
+}
 
 /* ========================================================= */
 

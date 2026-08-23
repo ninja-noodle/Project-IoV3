@@ -17,7 +17,7 @@
 
 <body>
     <section id="name-field-block">
-        <h1>Welcome</h1>
+        <h1>Hello</h1>
         <section class="content" id="name-field-block-content">
             <span id="name-error" class="no-select secondary-font">Incorrect name, try again!</span>
             <div id="name-check-field">
@@ -32,7 +32,16 @@
         </section>
     </section>
 
-    <div id="loader1" class="loader hidden"></div>
+    <div id="loading-container" class="loader-container hidden">
+        <div class="loader"></div>
+
+        <div id="loading-messages" class="hidden">
+            <span class="status-msg hidden">Verifying your information...</span>
+            <span class="status-msg hidden">Fetching today's date...</span>
+            <span class="status-msg hidden">Doing calculations...</span>
+            <span class="status-msg hidden">Just a few more seconds...</span>
+        </div>
+    </div>
 
     <section id="dob-field-block" class="hidden">
         <h1>Verify</h1>
@@ -57,11 +66,21 @@
         </section>
     </section>
 
-    <div id="loader2" class="loader hidden"></div>
-
     <section id="success-block" class="hidden">
-        <h1>Verify</h1>
+        <h1>Welcome</h1>
+        <section id="success-block-content" class="content">
+            <span class="no-select secondary-font success-font">Yay!!! You are the right person :D</span>
+            <button>Let's gooo
+            </button>
+        </section>
     </section>
+
+    <section id="age-counter-block" class="hidden">
+        <span class="no-select secondary-font">Today is</span>
+        <h1>Your Special Day</h1>
+    </section>
+
+
     <script src="scripts/transition.js"></script>
 
     <script src="scripts/name-field.js"></script>
