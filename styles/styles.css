@@ -1290,3 +1290,73 @@ button:active {
     transform: translateY(-8px);
     box-shadow: 0px 13.5px 0 black;
 }
+
+/* Card Container */
+.thank-you-card {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    border-radius: 1rem;
+    padding: 2.25rem 1.5rem;
+    max-width: 340px;
+    margin: 2rem auto;
+    text-align: center;
+    box-shadow: 0px 8px 0px #000000;
+    box-sizing: border-box;
+}
+
+.heart-badge {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.thank-you-card h2 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #000000;
+}
+
+.thank-you-card p {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    color: #333333;
+}
+
+/* Crafted Tag Style */
+.footer-credit {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    border: 1.5px solid #000000;
+    border-radius: 2rem;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #000000;
+    box-shadow: 0px 3.5px 0px #000000;
+}
+
+/* Soft pulse animation for heart */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+#view-gifts-content button {
+    border: 1.5px solid #2b1f3d;
+    color: #2b1f3d;
+    box-shadow: 0px 5.5px 0px #2b1f3d;
+}
