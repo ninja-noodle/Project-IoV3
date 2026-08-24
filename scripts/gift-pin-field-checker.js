@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const pinContainer = document.getElementById('gift-pin-field');
-    const inputs = pinContainer.querySelectorAll('.gift-pin');
+    const giftSection = document.getElementById('view-gifts');
+    const hiddenInput = document.getElementById('gift-pin-hidden');
+    const boxes = document.querySelectorAll('#gift-pin-field .gift-pin-box');
     const button = document.querySelector('#gift-pin-field-block-content button');
+    const errorMsg = document.getElementById('gift-pin-error');
+    const giftWrapper = document.getElementById('gift-pin-wrapper');
 
-    // Replace with your generated 64-character SHA-256 string
     const CORRECT_PIN_HASH = "63cf52215b7514d8dcdc9bfabd47aef052acce6dbc732367e4e0d97c8c2ad01a";
+    let isChecking = false;
 
-    // SHA-256 helper
     async function hashString(str) {
         const encoder = new TextEncoder();
         const data = encoder.encode(str);
@@ -15,44 +17,103 @@ document.addEventListener('DOMContentLoaded', () => {
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    // Get current PIN value
-    const getEnteredPin = () => Array.from(inputs).map(i => i.value).join('');
+    const updateBoxes = () => {
+        if (!hiddenInput) return;
+        const val = hiddenInput.value.replace(/\D/g, '');
+        hiddenInput.value = val;
 
-    // Clear fields on error
-    const resetInputs = () => {
-        inputs.forEach(input => input.value = '');
-        inputs[0].focus();
+        boxes.forEach((box, index) => {
+            box.textContent = val[index] || '';
+            if (index === val.length && document.activeElement === hiddenInput) {
+                box.classList.add('active');
+            } else {
+                box.classList.remove('active');
+            }
+        });
     };
 
-    // Dedicated validation function
-    async function checkPinMatch() {
-        const enteredPin = getEnteredPin();
+    const resetInputs = () => {
+        if (!hiddenInput) return;
+        hiddenInput.value = '';
+        updateBoxes();
+        hiddenInput.focus();
+    };
+
+    async function checkGiftPinMatch(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        if (isChecking) return;
+        isChecking = true;
+
+        const enteredPin = hiddenInput ? hiddenInput.value.replace(/\D/g, '') : '';
+
+        // Corrected to 6 digits for the Gift field
+        if (enteredPin.length < 6) {
+            if (errorMsg) errorMsg.classList.remove('hidden');
+            resetInputs();
+            isChecking = false;
+            return;
+        }
+
         const enteredHash = await hashString(enteredPin);
 
         if (enteredHash === CORRECT_PIN_HASH) {
-            document.getElementById('gift-pin-error').classList.add('hidden');
+            if (errorMsg) errorMsg.classList.add('hidden');
             navigateSections('#view-gifts', '#view-gifts-content');
             document.body.style.padding = '0';
             document.documentElement.style.padding = '0';
         } else {
-            document.getElementById('gift-pin-error').classList.remove('hidden');
+            if (errorMsg) errorMsg.classList.remove('hidden');
             resetInputs();
+            isChecking = false;
         }
     }
 
-    // 1. Click Listener
-    if (button) {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            checkPinMatch();
+    if (hiddenInput) {
+        hiddenInput.addEventListener('input', updateBoxes);
+        hiddenInput.addEventListener('focus', updateBoxes);
+        hiddenInput.addEventListener('blur', () => {
+            boxes.forEach(box => box.classList.remove('active'));
+        });
+
+        hiddenInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                checkGiftPinMatch(e);
+            }
         });
     }
 
-    // 2. Enter Key Listener on all PIN inputs
-    pinContainer.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            checkPinMatch();
+    if (giftWrapper && hiddenInput) {
+        giftWrapper.addEventListener('click', () => {
+            hiddenInput.focus();
+        });
+    }
+
+    if (button) {
+        button.setAttribute('type', 'button');
+        button.addEventListener('click', (e) => {
+            checkGiftPinMatch(e);
+        });
+    }
+
+    const focusInput = () => {
+        if (giftSection && !giftSection.classList.contains('hidden') && hiddenInput) {
+            setTimeout(() => hiddenInput.focus(), 100);
         }
+    };
+
+    focusInput();
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((m) => {
+            if (m.attributeName === 'class') focusInput();
+        });
     });
+
+    if (giftSection) {
+        observer.observe(giftSection, { attributes: true });
+    }
 });

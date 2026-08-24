@@ -1166,3 +1166,127 @@ button:active {
         transform: translate(calc(var(--tx) * 1.1), calc(var(--ty) - 60px)) scale(0.8) rotate(calc(var(--tr) + 30deg));
     }
 }
+
+
+
+
+
+/* 1. Outer Wrapper */
+#pin-field-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+/* 2. Layered Invisible Input (captures clicks & mobile typing) */
+#dob-pin-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 1px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* 3. Flex Container for Boxes */
+#pin-field {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    pointer-events: none;
+    padding-bottom: 16px;
+}
+
+/* 4. Visual Box Styling */
+.pin-box {
+    width: 38px;
+    height: 50px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* 5. Active Focus Elevation */
+.pin-box.active {
+    transform: translateY(-8px);
+    box-shadow: 0px 13.5px 0 black;
+}
+
+/* 1. Outer Wrapper */
+#gift-pin-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+/* 2. Layered Invisible Input */
+#gift-pin-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 1px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* 3. Flex Container for 6 Boxes */
+#gift-pin-field {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: none;
+    padding-bottom: 16px;
+}
+
+/* 4. Visual Box Styling */
+.gift-pin-box {
+    width: 42px;
+    height: 52px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* 5. Active Focus Elevation */
+.gift-pin-box.active {
+    transform: translateY(-8px);
+    box-shadow: 0px 13.5px 0 black;
+}

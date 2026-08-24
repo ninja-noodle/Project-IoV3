@@ -54,19 +54,27 @@
         <section id="pin-field-block-content" class="content">
             <span class="no-select secondary-font">Enter your Date of Birth</span>
             <span id="dob-pin-error" class="no-select secondary-font hidden">It's incorrect! Try again</span>
-            <div id="pin-field">
-                <input type="text" name="pin1" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
-                <input type="text" name="pin2" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
-                <input type="text" name="pin3" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
-                <input type="text" name="pin4" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
-                <input type="text" name="pin5" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
-                <input type="text" name="pin6" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
-                <input type="text" name="pin7" class="input pin" maxlength="1" inputmode="numeric" placeholder="-" />
+
+            <!-- 7-Digit PIN Wrapper -->
+            <div id="pin-field-wrapper">
+                <input type="text" id="dob-pin-hidden" inputmode="numeric" pattern="[0-9]*" maxlength="7"
+                    autocomplete="one-time-code" />
+                <div id="pin-field">
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                </div>
             </div>
-            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
-                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                 </svg>
             </button>
         </section>
@@ -242,21 +250,19 @@
         <section id="gift-pin-field-block-content" class="content">
             <span class="no-select secondary-font">Enter the pin included in the gift</span>
             <span id="gift-pin-error" class="no-select secondary-font hidden">It's incorrect! Try again</span>
-            <div id="gift-pin-field">
-                <input type="text" name="pin1" class="input gift-pin" maxlength="1" inputmode="numeric"
-                    placeholder="-" />
-                <input type="text" name="pin2" class="input gift-pin" maxlength="1" inputmode="numeric"
-                    placeholder="-" />
-                <input type="text" name="pin3" class="input gift-pin" maxlength="1" inputmode="numeric"
-                    placeholder="-" />
-                <input type="text" name="pin4" class="input gift-pin" maxlength="1" inputmode="numeric"
-                    placeholder="-" />
-                <input type="text" name="pin5" class="input gift-pin" maxlength="1" inputmode="numeric"
-                    placeholder="-" />
-                <input type="text" name="pin6" class="input gift-pin" maxlength="1" inputmode="numeric"
-                    placeholder="-" />
+            <div id="gift-pin-wrapper">
+                <input type="text" id="gift-pin-hidden" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+                    autocomplete="one-time-code" />
+                <div id="gift-pin-field">
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                </div>
             </div>
-            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />

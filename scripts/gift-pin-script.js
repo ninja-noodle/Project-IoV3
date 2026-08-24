@@ -1,84 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const giftsBlock = document.getElementById('view-gifts');
-    const pinContainer = document.getElementById('gift-pin-field');
-    const inputs = pinContainer.querySelectorAll('.gift-pin');
+    const giftSection = document.getElementById('view-gifts');
+    const hiddenInput = document.getElementById('gift-pin-hidden');
+    const boxes = document.querySelectorAll('#gift-pin-field .gift-pin-box');
+    const button = document.querySelector('#gift-pin-field-block-content button');
+    const errorMsg = document.getElementById('gift-pin-error');
+    const giftWrapper = document.getElementById('gift-pin-wrapper');
 
-    // Helper to trigger active animation and focus
-    const triggerActiveAnimation = (input) => {
-        if (!input) return;
-        input.focus();
-        input.classList.add('active');
+    const GIFT_PIN_HASH = "fcbba330679e1a7561aeab1faa73482aedd5fc30d12d7842aae4936a1394f3d7";
 
-        setTimeout(() => {
-            input.classList.remove('active');
-        }, 200);
+    async function hashString(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    const updateBoxes = () => {
+        const val = hiddenInput.value.replace(/\D/g, '');
+        hiddenInput.value = val;
+
+        boxes.forEach((box, index) => {
+            box.textContent = val[index] || '';
+            if (index === val.length && document.activeElement === hiddenInput) {
+                box.classList.add('active');
+            } else {
+                box.classList.remove('active');
+            }
+        });
     };
 
-    // Helper to focus the first input safely
-    const focusFirstInput = () => {
-        if (inputs.length > 0 && !giftsBlock.classList.contains('hidden')) {
-            // Small timeout ensures the DOM has updated visibility before focusing
-            setTimeout(() => triggerActiveAnimation(inputs[0]), 50);
+    async function checkGiftPinMatch() {
+        const enteredPin = hiddenInput ? hiddenInput.value : '';
+        const enteredHash = await hashString(enteredPin);
+
+        if (enteredHash === GIFT_PIN_HASH) {
+            if (errorMsg) errorMsg.classList.add('hidden'); // Clear error on success
+            navigateSections('#view-gifts', '#gift-reveal-block');
+        } else {
+            if (errorMsg) errorMsg.classList.remove('hidden'); // Show error on failure
+            if (hiddenInput) {
+                hiddenInput.value = '';
+                updateBoxes();
+                hiddenInput.focus();
+            }
+        }
+    }
+
+    // Input & Focus Listeners
+    if (hiddenInput) {
+        hiddenInput.addEventListener('input', updateBoxes);
+        hiddenInput.addEventListener('focus', updateBoxes);
+        hiddenInput.addEventListener('blur', () => {
+            boxes.forEach(box => box.classList.remove('active'));
+        });
+    }
+
+    // Tap/Click forwarder
+    if (giftWrapper && hiddenInput) {
+        giftWrapper.addEventListener('click', () => {
+            hiddenInput.focus();
+        });
+    }
+
+    // Submission Listeners
+    if (button) {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            checkGiftPinMatch();
+        });
+    }
+
+    if (giftWrapper) {
+        giftWrapper.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                checkGiftPinMatch();
+            }
+        });
+    }
+
+    // Auto-focus when section opens
+    const focusInput = () => {
+        if (giftSection && !giftSection.classList.contains('hidden') && hiddenInput) {
+            setTimeout(() => hiddenInput.focus(), 100);
         }
     };
 
-    // Enforce single-character & numeric rules
-    inputs.forEach((input) => {
-        input.setAttribute('maxlength', '1');
-        input.setAttribute('inputmode', 'numeric');
-    });
+    focusInput();
 
-    // 1. Focus immediately if already visible on load
-    focusFirstInput();
-
-    // 2. Watch for class changes (un-hiding) on #dob-field-block
     const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'class') {
-                focusFirstInput();
-            }
+        mutations.forEach((m) => {
+            if (m.attributeName === 'class') focusInput();
         });
     });
 
-    observer.observe(giftsBlock, { attributes: true });
-
-    // 3. Auto-advance when typing
-    pinContainer.addEventListener('input', (e) => {
-        const target = e.target;
-        if (!target.classList.contains('pin')) return;
-
-        target.value = target.value.replace(/\D/g, '');
-        const index = Array.from(inputs).indexOf(target);
-
-        if (target.value && index < inputs.length - 1) {
-            triggerActiveAnimation(inputs[index + 1]);
-        }
-    });
-
-    // 4. Handle Backspace navigation
-    pinContainer.addEventListener('keydown', (e) => {
-        const target = e.target;
-        if (!target.classList.contains('pin')) return;
-
-        const index = Array.from(inputs).indexOf(target);
-
-        if (e.key === 'Backspace' && !target.value && index > 0) {
-            triggerActiveAnimation(inputs[index - 1]);
-        }
-    });
-
-    // 5. Handle Paste
-    pinContainer.addEventListener('paste', (e) => {
-        e.preventDefault();
-        const pastedData = e.clipboardData.getData('text').replace(/\D/g, '');
-
-        inputs.forEach((input, index) => {
-            if (pastedData[index]) {
-                input.value = pastedData[index];
-            }
-        });
-
-        const focusIndex = Math.min(pastedData.length, inputs.length - 1);
-        triggerActiveAnimation(inputs[focusIndex]);
-    });
+    if (giftSection) {
+        observer.observe(giftSection, { attributes: true });
+    }
 });

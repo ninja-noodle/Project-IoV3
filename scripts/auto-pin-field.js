@@ -1,84 +1,96 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const dobBlock = document.getElementById('view-gifts');
-    const pinContainer = document.getElementById('gift-pin-field');
-    const inputs = pinContainer.querySelectorAll('.gift-pin');
+    const dobBlock = document.getElementById('dob-field-block');
+    const hiddenInput = document.getElementById('dob-pin-hidden');
+    const boxes = document.querySelectorAll('#pin-field .pin-box');
+    const button = document.querySelector('#pin-field-block-content button');
+    const errorMsg = document.getElementById('dob-pin-error');
 
-    // Helper to trigger active animation and focus
-    const triggerActiveAnimation = (input) => {
-        if (!input) return;
-        input.focus();
-        input.classList.add('active');
+    const CORRECT_PIN_HASH = "fcbba330679e1a7561aeab1faa73482aedd5fc30d12d7842aae4936a1394f3d7";
 
-        setTimeout(() => {
-            input.classList.remove('active');
-        }, 200);
+    async function hashString(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    const updateBoxes = () => {
+        const val = hiddenInput.value.replace(/\D/g, '');
+        hiddenInput.value = val;
+
+        boxes.forEach((box, index) => {
+            box.textContent = val[index] || '';
+            if (index === val.length && document.activeElement === hiddenInput) {
+                box.classList.add('active');
+            } else {
+                box.classList.remove('active');
+            }
+        });
     };
 
-    // Helper to focus the first input safely
-    const focusFirstInput = () => {
-        if (inputs.length > 0 && !dobBlock.classList.contains('hidden')) {
-            // Small timeout ensures the DOM has updated visibility before focusing
-            setTimeout(() => triggerActiveAnimation(inputs[0]), 50);
+    const resetInputs = () => {
+        hiddenInput.value = '';
+        updateBoxes();
+        hiddenInput.focus();
+    };
+
+    async function checkPinMatch() {
+        const enteredPin = hiddenInput.value;
+        const enteredHash = await hashString(enteredPin);
+
+        if (enteredHash === CORRECT_PIN_HASH) {
+            if (errorMsg) errorMsg.classList.add('hidden');
+            navigateSections('#dob-field-block', '#success-block');
+        } else {
+            if (errorMsg) errorMsg.classList.remove('hidden');
+            resetInputs();
+        }
+    }
+
+    hiddenInput.addEventListener('input', updateBoxes);
+    hiddenInput.addEventListener('focus', updateBoxes);
+    hiddenInput.addEventListener('blur', () => {
+        boxes.forEach(box => box.classList.remove('active'));
+    });
+
+    if (button) {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            checkPinMatch();
+        });
+    }
+
+    hiddenInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            checkPinMatch();
+        }
+    });
+
+    const focusInput = () => {
+        if (dobBlock && !dobBlock.classList.contains('hidden')) {
+            setTimeout(() => hiddenInput.focus(), 100);
         }
     };
 
-    // Enforce single-character & numeric rules
-    inputs.forEach((input) => {
-        input.setAttribute('maxlength', '1');
-        input.setAttribute('inputmode', 'numeric');
-    });
+    focusInput();
 
-    // 1. Focus immediately if already visible on load
-    focusFirstInput();
-
-    // 2. Watch for class changes (un-hiding) on #view-gifts
     const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'class') {
-                focusFirstInput();
-            }
+        mutations.forEach((m) => {
+            if (m.attributeName === 'class') focusInput();
         });
     });
 
-    observer.observe(dobBlock, { attributes: true });
-
-    // 3. Auto-advance when typing
-    pinContainer.addEventListener('input', (e) => {
-        const target = e.target;
-        if (!target.classList.contains('gift-pin')) return;
-
-        target.value = target.value.replace(/\D/g, '');
-        const index = Array.from(inputs).indexOf(target);
-
-        if (target.value && index < inputs.length - 1) {
-            triggerActiveAnimation(inputs[index + 1]);
-        }
-    });
-
-    // 4. Handle Backspace navigation
-    pinContainer.addEventListener('keydown', (e) => {
-        const target = e.target;
-        if (!target.classList.contains('gift-pin')) return;
-
-        const index = Array.from(inputs).indexOf(target);
-
-        if (e.key === 'Backspace' && !target.value && index > 0) {
-            triggerActiveAnimation(inputs[index - 1]);
-        }
-    });
-
-    // 5. Handle Paste
-    pinContainer.addEventListener('paste', (e) => {
-        e.preventDefault();
-        const pastedData = e.clipboardData.getData('text').replace(/\D/g, '');
-
-        inputs.forEach((input, index) => {
-            if (pastedData[index]) {
-                input.value = pastedData[index];
-            }
-        });
-
-        const focusIndex = Math.min(pastedData.length, inputs.length - 1);
-        triggerActiveAnimation(inputs[focusIndex]);
-    });
+    if (dobBlock) {
+        observer.observe(dobBlock, { attributes: true });
+    }
 });
+
+const pinWrapper = document.getElementById('pin-field-wrapper');
+
+if (pinWrapper && hiddenInput) {
+    pinWrapper.addEventListener('click', () => {
+        hiddenInput.focus();
+    });
+}
