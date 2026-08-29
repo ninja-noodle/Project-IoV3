@@ -1,21 +1,21 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-document.addEventListener('DOMContentLoaded', () => {
-    const initialSection = document.querySelector('#name-field-block');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const initialSection = document.querySelector('#name-field-block');
 
-    if (initialSection) {
-        initialSection.classList.remove('hidden');
+//     if (initialSection) {
+//         initialSection.classList.remove('hidden');
 
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                initialSection.classList.add('page', 'animate-scale-in');
+//         requestAnimationFrame(() => {
+//             requestAnimationFrame(() => {
+//                 initialSection.classList.add('page', 'animate-scale-in');
 
-                const nameInput = initialSection.querySelector('input');
-                if (nameInput) nameInput.focus();
-            });
-        });
-    }
-});
+//                 const nameInput = initialSection.querySelector('input');
+//                 if (nameInput) nameInput.focus();
+//             });
+//         });
+//     }
+// });
 
 /**
  * Universal section navigator supporting optional message sequences

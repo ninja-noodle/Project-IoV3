@@ -182,7 +182,9 @@ function completeHold() {
     triggerBigConfetti();
 
     // 2. Navigate to the new message section after brief delay
-    setTimeout(() => {
+    setTimeout(async () => {
+        await window.decryptSection('#message-section');
+
         navigateSections('#cake', '#message-section', false);
         document.body.style.padding = '0 8px';
         document.documentElement.style.padding = '0 8px';

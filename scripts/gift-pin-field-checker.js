@@ -62,9 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (enteredHash === CORRECT_PIN_HASH) {
             if (errorMsg) errorMsg.classList.add('hidden');
-            navigateSections('#view-gifts', '#view-gifts-content');
-            document.body.style.padding = '0';
-            document.documentElement.style.padding = '0';
+            setTimeout(async () => {
+                await window.decryptSection('#view-gifts-content');
+                navigateSections('#view-gifts', '#view-gifts-content', false);
+                document.body.style.padding = '0';
+                document.documentElement.style.padding = '0';
+            }, 500);
         } else {
             if (errorMsg) errorMsg.classList.remove('hidden');
             resetInputs();

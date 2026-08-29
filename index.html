@@ -16,7 +16,36 @@
 </head>
 
 <body>
-    <section id="name-field-block">
+    <section id="entry-pin-section" class="card-section">
+        <h1>Welcome</h1>
+        <section id="entry-pin-field-block-content" class="content">
+            <span class="no-select secondary-font">Enter your secret PIN to unlock</span>
+            <span id="entry-pin-error" class="no-select secondary-font hidden">Incorrect PIN. Try again!</span>
+
+            <!-- Mobile-Optimized 6-Digit PIN Field -->
+            <div id="entry-pin-wrapper">
+                <input type="text" id="entry-pin-hidden" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+                    autocomplete="one-time-code" />
+                <div id="entry-pin-field">
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                </div>
+            </div>
+
+            <button id="entry-pin-btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                </svg>
+            </button>
+        </section>
+    </section>
+    <section id="name-field-block" class="hidden">
         <h1>Hello</h1>
         <section class="content" id="name-field-block-content">
             <span id="name-error" class="no-select secondary-font">Incorrect name, try again!</span>
@@ -204,40 +233,8 @@
     </section>
 
     <section id="message-section" class="message-section hidden">
-        <h1>Happy Birthday, my love💗</h1>
+        <h1 id="message-title"></h1>
         <div class="wish-message" id="wish-message">
-            Happy Great Birthday, my dearest love. Today is the day you turned a year older....and yet, I certainly know
-            that mentally and physically, you've become a lot stronger, more resilient, more graceful and more grounded.
-            And if you ever feel like you aren't good, just remember that I am a proud and happy man to meet with
-            someone like you, to be friends with someone like you, to see all your achievements, your hardships, your
-            dedications, etc and of couse, to be able to love you to the fullest. From the deepest of my heart and soul,
-            I wish you to be able to make it more in life, more successful, more inspiring and more elegant.
-            Starting from today, until the next Birthday comes, I hope and wish you can achieve more greater and better
-            things in many aspects of life. Even before lovers, you were always my inspiration, and to this day, I still
-            inspire you and respect you a lot for your efforts and your story in life.
-            Before I came to Malaysia, I never, once in my life, thought that I would cross paths with you, and the more
-            I think about it, the more I feel joyful, hopeful and happy that that happened. You taught me countless new
-            things and given me countless new knowledge about literally everything, and I highly appreciate every one of
-            them.
-            So from my truest feeligs for you, I hope that everything you do and you plan to do, you can achieve every
-            one of them.
-            I wish that you can spend more precious moments, and make more priceless memories with your beloved parents,
-            family members, people and friends that you love (hope i'm also included hehe) for many many upcoming years.
-            I don't think I need to wish you for more beauty because my wifey is the most prettiest, most elegant yet
-            cutest person I've met and will ever meet in life. So I just wish that you be able to maintain that first
-            position in beauty throughout your entire life, which I'm pretty sure you will.
-            ဘဝရဲ့ နောက်ကြုံတွေ့လာမယ့် ကိစ္စအဝဝ အားလုံးကိုလည်း အဆင်ပြေစွာလုပ်ဆောင်နိုင်ပါစေ
-            ဘဝရဲ့ ရည်မှန်းချက်တွေ၊ဖြစ်ချင်တာတွေကိုလည်း ရရှိအောင်ဆက်လက်ပြီး ကြိုးစားနိုင်ပါစေ ရရှိနိုင်ပါစေ
-            ကိုကိုရီးလည်းတစ်ဖက်တစ်လမ်းကနေ ရအောင်ကူညီပေးမယ် ကူညီပေးချင်တယ် ဘဝလက်တွဲဖော်တစ်ယောက်အဖြစ်နဲ့
-
-            ကိုကိုရီးနဲ့လည်း အမြဲထာဝရ နှစ်ယောက်သား နောင်မဆုံးနိုင်‌သောနှစ်ပေါင်းအများကြီးအထိ ဆက်လက်ပြီး
-            အချစ်ပန်းတွေမျှဝေနိုင်ပါစေ ဆင်လက်ပြီးလည်းမျှဝေချင်တယ် ချစ်ချင်တယ် ကိုကိုရီးဇနီးလေးကို
-
-            ရင်ထဲ နှလုံးသားထဲ ဦးနှောက်ထဲကနေ<br>မီးမီးလေးသဲစုထွေးကိုအများကြီးချစ်တယ်
-
-            From me to you, you will always be my one and only stranger, whom I can give the fullest love and care, who
-            gives me the fullest love and care.<br>
-            Happy Great Birthday💗
         </div>
         <img id="bouquet" src="src/bouquet-flower.png" alt="Bouquet">
         <span class="no-select secondary-font">Try clicking the bouquet</span>
@@ -278,132 +275,63 @@
         <div class="gifts-carousel">
 
             <!-- Card 1 -->
-            <div class="gift-card">
+            <div id="card1" class="gift-card">
                 <div class="card-image-placeholder">
                     <img src="https://down-my.img.susercontent.com/file/cn-11134207-820l4-mr9ydgwcc9oib8@resize_w900_nl.webp"
                         alt="Special Gift">
                 </div>
-                <h3 class="card-heading">FJbottle Tumbler</h3>
-                <div class="card-text-box">
-                    <p>I know you really need a new water bottle, and I know you need a great one, so I end up choosing
-                        this<br>for a few reasons:
-                    <ul>
-                        <li>it's a 1000ml bottle, which is kinda rare to find, but it's one of the top priority when
-                            searching a bottle for you, since you drink a lot and i don't want you to keep filling again
-                            and again. I want a bottle that would last a day for you.</li>
-                        <li>the design also needs to be clean, yet unique and cool. There are some bottles with cool
-                            designs but they use straws and pipes which i know it's not your preference.</li>
-                        <li>it also needs to be easily carriable with a strong, sturdy handle that you can easily grab
-                            and go</li>
-                        <li>it also needs to be easily accessible meaning it should be easy and welcoming enough to
-                            drink. That's why I chose a one-touch pop lid that also has a safety closure.</li>
-                        <li>i chose this color because it's very subtly yet stands out in a cool way. I first thought of
-                            choosing yellow since you said you used to like yellow, but since it's "used to", i just
-                            went with the light purple gradient.</li>
-                    </ul>
-                    </p>
-                </div>
+                <h3 id="card1-title" class="card-heading"></h3>
+                <div id="card1-sub" class="card-text-box"></div>
             </div>
 
             <!-- Card 2 -->
-            <div class="gift-card">
+            <div id="card2" class="gift-card">
                 <div class="card-image-placeholder">
                     <img src="https://down-my.img.susercontent.com/file/my-11134207-820lb-mljcszdo8z5vce@resize_w900_nl.webp"
                         alt="Special Gift">
                 </div>
-                <h3 class="card-heading">UNIQ Camden Click Case</h3>
-                <div class="card-text-box">
-                    <p>Your IPad case really needs a refresh. So I looked up on Shopee and found a bunch of good
-                        options. But this one really stands out due to these reasons:
-                    <ul>
-                        <li>it's very stylist with the origami folding case, which is great for both aesthetic and
-                            usability.
-                        </li>
-                        <li>it has a easy to access place for the pen. I thought of buying ones with the magnet, but
-                            since your one doesn't support magnet.
-                        </li>
-                        <li>I chose this ivory color because it's very subtle and clean, and also professional.
-                        </li>
-                    </ul>
-                    </p>
-                </div>
+                <h3 id="card2-title" class="card-heading"></h3>
+                <div id="card2-sub" class="card-text-box"></div>
             </div>
 
             <!-- Card 3 -->
-            <div class="gift-card">
+            <div id="card3" class="gift-card">
                 <div class="card-image-placeholder">
                     <img src="https://down-my.img.susercontent.com/file/sg-11134207-7rdya-lzitjaiiccc46f@resize_w900_nl.webp"
                         alt="Special Gift">
                 </div>
-                <h3 class="card-heading">elago Magnetic Silicone Case</h3>
-                <div class="card-text-box">
-                    <p>This is a hard choice because i know you want a new phone case. I tried to find sth unique yet
-                        clean and minimal, and I found this brand called elago which seesm to make some pretty premium
-                        iPhone cases. Here's the reason for choosing this:</p>
-                    <ul>
-                        <li>the color is really clean, and matches your phone's white color. This was one of the hardest
-                            decisions because there were also other colors that looked really great, but I also don't
-                            want to give you the same or similar color as your old one. Plus the metallic buttons give
-                            you a premium subtly standout.</li>
-                    </ul>
-                    <p>
-                        I remember going through the comment's uploaded reviews again and again to see which color
-                        would
-                        suit your white IPhone the best, and at the end, I ended up choosing this. I really really hope
-                        you
-                        like it.
-                    </p>
-                </div>
+                <h3 id="card3-title" class="card-heading"></h3>
+                <div id="card3-sub" class="card-text-box"></div>
             </div>
 
             <!-- Card 4 -->
-            <div class="gift-card">
+            <div id="card4" class="gift-card">
                 <div class="card-image-placeholder">
                     <img src="https://down-my.img.susercontent.com/file/my-11134211-820l8-mh1cyedmzriid7@resize_w900_nl.webp"
                         alt="Special Gift">
                 </div>
-                <h3 class="card-heading">CURIO Guard</h3>
-                <div class="card-text-box">
-                    <p>I think this is quite obvious that you really need a new screen protector. There were many brands
-                        but CURIO stands out as a more premium reliable brand. I chose the privacy one because idk, you
-                        might want to continue using the privacy screen protector.</p>
-                </div>
+                <h3 id="card4-title" class="card-heading"></h3>
+                <div id="card4-sub" class="card-text-box"></div>
             </div>
 
             <!-- Card 5 -->
-            <div class="gift-card">
+            <div id="card5" class="gift-card">
                 <div class="card-image-placeholder">
                     <img src="https://down-my.img.susercontent.com/file/my-11134207-820lg-mi2n24nhyvbaa4@resize_w900_nl.webp"
                         alt="Special Gift">
                 </div>
-                <h3 class="card-heading">CURIO Matte Case</h3>
-                <div class="card-text-box">
-                    <p>This one is kinda awkward. Since I know you want a case with a little bit of fresh design, so
-                        additional to the elago case which you already have sth similar, I also bought you another case,
-                        just in case you didn't like the first one. Actually I bought this one first, and then the elago
-                        case because this one, the color is kinda boring. It's just black. At least the frosted
-                        backcover is really cool.</p>
-                </div>
+                <h3 id="card5-title" class="card-heading"></h3>
+                <div id="card5-sub" class="card-text-box"></div>
             </div>
 
             <!-- Card 6 -->
-            <div class="gift-card">
+            <div id="card6" class="gift-card">
                 <div class="card-image-placeholder">
                     <img src="https://down-my.img.susercontent.com/file/my-11134207-7r98q-luk4fgj6fw4z19@resize_w900_nl.webp"
                         alt="Special Gift">
                 </div>
-                <h3 class="card-heading">Kuru Toga Switch Alpha Gel</h3>
-                <div class="card-text-box">
-                    <p>Well, this is a mechanical pencil that I really want you to try. I mean I've also never tried
-                        before but I know it's a really good one, and when i saw you trying out for the first time, you
-                        seem to like it so here it is. There's the original Kuru Toga and this alpha gel one. This one,
-                        you can change mode between normal and Kuru Toga. I chose this because you might not be familiar
-                        with the Kuru Toga Mode or just doesn't like that mode at all. The hardest and the most time
-                        consuming thing is finding the freaking colors. Every good color was nearly sold out in almost
-                        all stores, so I spent like a good 2 hours just going through multiple stores in Shopee. I
-                        bought three colors, one for you, one for Chu as I haven't given him a bday gift as well, and
-                        one for me. I'll let you choose your preferred color first.</p>
-                </div>
+                <h3 id="card6-title" class="card-heading"></h3>
+                <div id="card6-sub" class="card-text-box"></div>
             </div>
         </div>
         <button id="done-gifts-btn" type="button">Done</button>
@@ -412,20 +340,15 @@
     <section id="thank-you-block" class="card-section hidden">
         <div class="thank-you-card">
             <div class="heart-badge">💖</div>
-            <h2>Thank You for Everything!</h2>
-            <p class="secondary-font">
-                I hope this little surprise made your day extra special. You deserve all the love, happiness, and best
-                luck
-                in the world today and always.
-            </p>
+            <h2 id="thank-you-heading"></h2>
+            <p id="thank-you-sub" class="secondary-font"></p>
             <div class="footer-credit">
-                <span>Made with ❤️ by your husband</span>
+                <span id="thank-you-credit"></span>
             </div>
         </div>
     </section>
-
     <script src="scripts/transition.js"></script>
-
+    <script src="scripts/text-and-initialise.js"></script>
     <script src="scripts/name-field.js"></script>
     <script src="scripts/auto-pin-field.js"></script>
     <script src="scripts/pin-field-checker.js"></script>

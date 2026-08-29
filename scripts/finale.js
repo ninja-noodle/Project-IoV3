@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
         doneButton.addEventListener('click', (e) => {
             e.preventDefault();
 
-            // Navigate to final thank-you card
-            navigateSections('#view-gifts-content', '#thank-you-block');
+            setTimeout(async () => {
+                await window.decryptSection('#thank-you-block');
 
-            // Restore standard layout padding if modified earlier
-            document.body.style.padding = '';
-            document.documentElement.style.padding = '';
+                navigateSections('#view-gifts-content', '#thank-you-block', false);
+                document.body.style.padding = '0';
+                document.documentElement.style.padding = '0';
+            }, 800);
 
             // Ensure view scrolls to top for final card
             window.scrollTo({ top: 0, behavior: 'smooth' });
